@@ -83,3 +83,9 @@ Sau khi hoàn thành bộ khung xương Microservices chuẩn, hệ thống đã
 - **Phase 26 (Prometheus & Grafana):** Cấu hình tự động khởi chạy cụm Monitoring thông qua `docker-compose`. `prometheus.yml` được cấu hình để "cạo" metrics từ Actuator của các microservices liên tục mỗi 15s.
 - **Phase 27 (Transactional Outbox):** Giải quyết triệt để lỗi mất dữ liệu giữa Database và Kafka bằng Outbox Pattern cho Order Service. Đơn hàng và sự kiện được lưu chung 1 transaction, sau đó có `@Scheduled` relay lên Kafka.
 - **Phase 28 (Kubernetes Ready):** Cung cấp sẵn bộ thư mục `k8s/` chứa `deployment.yaml` và `service.yaml` (dùng LoadBalancer cho Gateway), sẵn sàng bốc toàn bộ hệ thống quăng lên GKE (Google Kubernetes Engine) hoặc EKS (Amazon Elastic Kubernetes Service).
+
+## 8. Các Giai Đoạn Hoàn Thiện Tối Cấp (Phase 29 - Phase 32)
+- **Phase 29 (GitOps với ArgoCD):** Tự động hóa quá trình Continuous Deployment với triết lý GitOps. ArgoCD sẽ lắng nghe kho lưu trữ GitHub và tự động đồng bộ (sync) vào Kubernetes Cluster.
+- **Phase 30 (Service Mesh với Istio):** Giải phóng các Microservices khỏi gánh nặng mạng lưới (Routing, Security, Retries). Istio đã được thiết lập `virtual-service.yaml` và `gateway.yaml` cho toàn bộ dự án.
+- **Phase 31 (Tự động khởi tạo DB):** Viết script `init-db.sql` kết hợp vào Docker entrypoint, giúp tạo tự động các Databases như `identity_db`, `catalog_db` một cách mượt mà mỗi khi MySQL Container được dựng lên.
+- **Phase 32 (Công cụ Bàn Giao - Handover):** Bàn giao thành công. Tạo các tập lệnh chạy dự án 1 chạm (`start-all.bat` / `stop-all.bat`) và cập nhật toàn diện tài liệu kỹ thuật ở trang chủ `README.md`.
