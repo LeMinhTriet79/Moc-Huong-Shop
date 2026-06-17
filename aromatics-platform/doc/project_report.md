@@ -65,3 +65,9 @@ Sau khi hoàn thành bộ khung xương Microservices chuẩn, hệ thống đã
 - **Phase 14:** Cấu hình **Spring Boot Actuator** kèm **Zipkin** và **Micrometer** để có thể giám sát health check và distributed tracing cho toàn bộ hệ thống.
 - **Phase 15:** Đã viết Unit Test cho logic của `OrderService` sử dụng Mockito và JUnit 5.
 - **Phase 16:** Hoàn thiện Pipeline CI/CD thông qua GitHub Actions và chuẩn hóa kịch bản chạy toàn diện (MySQL, Redis, Kafka, Zipkin) qua `docker-compose.yml`.
+
+## 5. Các Giai Đoạn Nâng Cấp Enterprise (Phase 17 - Phase 20)
+- **Phase 17:** Đã tích hợp `springdoc-openapi-starter-webmvc-ui` để sinh Swagger/OpenAPI tự động cho các microservices.
+- **Phase 18:** Đã cấu hình Centralized Logging qua `logback-spring.xml` để xuất log format chuẩn.
+- **Phase 19:** Đã bổ sung Dead Letter Queue (DLQ) cho Kafka Listener ở Notification Service, phòng tránh mất event khi quá trình xử lý thất bại nhiều lần.
+- **Phase 20:** Đã cấu hình cấu hình Request Rate Limiting trên API Gateway sử dụng **Redis Reactive** để giới hạn tốc độ truy cập theo IP, chống DDoS và Spam.
