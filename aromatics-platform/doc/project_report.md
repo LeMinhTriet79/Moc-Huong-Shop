@@ -71,3 +71,9 @@ Sau khi hoàn thành bộ khung xương Microservices chuẩn, hệ thống đã
 - **Phase 18:** Đã cấu hình Centralized Logging qua `logback-spring.xml` để xuất log format chuẩn.
 - **Phase 19:** Đã bổ sung Dead Letter Queue (DLQ) cho Kafka Listener ở Notification Service, phòng tránh mất event khi quá trình xử lý thất bại nhiều lần.
 - **Phase 20:** Đã cấu hình cấu hình Request Rate Limiting trên API Gateway sử dụng **Redis Reactive** để giới hạn tốc độ truy cập theo IP, chống DDoS và Spam.
+
+## 6. Các Giai Đoạn Cải Tiến Kiến Trúc Cấp Cao (Phase 21 - Phase 24)
+- **Phase 21 (RBAC Security):** Tích hợp Spring Security, bổ sung JWT filter và dùng `@PreAuthorize` để phân rạch ròi quyền hạn (Role: USER, ADMIN) tại các Endpoint quan trọng.
+- **Phase 22 (Spring Cloud Config):** Khởi tạo `config-server` đóng vai trò quản lý cấu hình tập trung cho toàn bộ hệ thống Microservices. Các service con sẽ kéo cấu hình động khi khởi động.
+- **Phase 23 (Jasypt Secrets Management):** Ứng dụng thư viện Jasypt để mã hóa toàn bộ dữ liệu nhạy cảm (như mật khẩu DB) dưới dạng chuỗi `ENC(...)` trong các file cấu hình.
+- **Phase 24 (Elasticsearch):** Tích hợp Elasticsearch vào Catalog Service. Định nghĩa `ProductDocument` và `ProductSearchRepository` nhằm phục vụ tính năng tìm kiếm Full-Text với tốc độ cực nhanh và chính xác.
