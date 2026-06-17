@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final com.minhtriet.se3979.orderservice.kafka.KafkaProducerService kafkaProducerService;
 
     @Override
     public OrderResponse createOrder(OrderRequest request) {
@@ -32,6 +33,7 @@ public class OrderServiceImpl implements OrderService {
         order.setDiscountAmount(BigDecimal.ZERO);
         
         order = orderRepository.save(order);
+        kafkaProducerService.publishOrderCreated(order.getId(), order.getUserId(), order.getTotalAmount());
 
         return OrderResponse.builder()
                 .id(order.getId())
