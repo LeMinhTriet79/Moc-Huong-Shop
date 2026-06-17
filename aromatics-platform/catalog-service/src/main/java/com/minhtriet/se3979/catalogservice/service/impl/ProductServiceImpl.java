@@ -6,6 +6,8 @@ import com.minhtriet.se3979.catalogservice.repository.ProductRepository;
 import com.minhtriet.se3979.catalogservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -16,17 +18,20 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
+    @Cacheable(value = "products")
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll().stream().map(p -> ProductResponse.builder().id(p.getId()).name(p.getName()).description(p.getDescription()).price(p.getBasePrice()).sku(p.getSlug()).build()).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable(value = "products", key = "#id")
     public ProductResponse getProductById(Long id) {
         Product p = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
         return ProductResponse.builder().id(p.getId()).name(p.getName()).description(p.getDescription()).price(p.getBasePrice()).sku(p.getSlug()).build();
     }
 
     @Override
+    @CacheEvict(value = "products", allEntries = true)
     public ProductResponse createProduct(ProductRequest request) {
         Product p = new Product();
         p.setName(request.getName());
