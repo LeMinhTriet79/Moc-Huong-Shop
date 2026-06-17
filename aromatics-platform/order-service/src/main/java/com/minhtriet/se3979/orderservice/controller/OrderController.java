@@ -1,18 +1,24 @@
 package com.minhtriet.se3979.orderservice.controller;
-import com.minhtriet.se3979.orderservice.entity.Order;
+import com.minhtriet.se3979.orderservice.dto.request.OrderRequest;
+import com.minhtriet.se3979.orderservice.dto.response.OrderResponse;
 import com.minhtriet.se3979.orderservice.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/api/orders")
+@RequiredArgsConstructor
 public class OrderController {
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
-    @GetMapping
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    @PostMapping
+    public ResponseEntity<OrderResponse> createOrder(@RequestBody OrderRequest request) {
+        return ResponseEntity.ok(orderService.createOrder(request));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> getOrder(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getOrderById(id));
     }
 }

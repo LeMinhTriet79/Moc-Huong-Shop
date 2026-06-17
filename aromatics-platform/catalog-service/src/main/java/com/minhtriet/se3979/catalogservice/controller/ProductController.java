@@ -1,18 +1,30 @@
 package com.minhtriet.se3979.catalogservice.controller;
-import com.minhtriet.se3979.catalogservice.entity.Product;
+import com.minhtriet.se3979.catalogservice.dto.request.ProductRequest;
+import com.minhtriet.se3979.catalogservice.dto.response.ProductResponse;
 import com.minhtriet.se3979.catalogservice.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/catalog/products")
+@RequiredArgsConstructor
 public class ProductController {
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductResponse>> getAll() {
+        return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getProductById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductResponse> create(@RequestBody ProductRequest request) {
+        return ResponseEntity.ok(productService.createProduct(request));
     }
 }

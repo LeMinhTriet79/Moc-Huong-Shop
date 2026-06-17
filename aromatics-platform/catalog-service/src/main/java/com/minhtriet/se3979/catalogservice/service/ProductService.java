@@ -1,16 +1,9 @@
 package com.minhtriet.se3979.catalogservice.service;
-import com.minhtriet.se3979.catalogservice.entity.Product;
-import com.minhtriet.se3979.catalogservice.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.minhtriet.se3979.catalogservice.dto.request.ProductRequest;
+import com.minhtriet.se3979.catalogservice.dto.response.ProductResponse;
 import java.util.List;
-
-@Service
-public class ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
+public interface ProductService {
+    List<ProductResponse> getAllProducts();
+    ProductResponse getProductById(Long id);
+    ProductResponse createProduct(ProductRequest request);
 }
