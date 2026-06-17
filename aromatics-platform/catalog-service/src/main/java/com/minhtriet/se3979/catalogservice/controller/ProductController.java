@@ -5,6 +5,7 @@ import com.minhtriet.se3979.catalogservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
@@ -29,6 +30,7 @@ public class ProductController {
     }
 
     @Operation(summary = "Create a new record")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ProductResponse> create(@jakarta.validation.Valid @RequestBody ProductRequest request) {
         return ResponseEntity.ok(productService.createProduct(request));
