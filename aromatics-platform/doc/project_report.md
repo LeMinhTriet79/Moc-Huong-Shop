@@ -57,3 +57,11 @@ Sau khi hoàn thành bộ khung xương Microservices chuẩn, hệ thống đã
 3. **Centralized Logging & Monitoring:** Tích hợp ELK Stack (Elasticsearch, Logstash, Kibana) và Prometheus + Grafana để giám sát logs và metrics sức khỏe của hệ thống.
 
 *Tài liệu được tự động tạo sau khi hoàn tất toàn bộ tiến trình triển khai kỹ thuật.*
+
+
+## 4. Các Giai Đoạn Cải Tiến Đã Hoàn Thành (Phase 12 - Phase 16)
+- **Phase 12:** Đã tích hợp `GlobalExceptionHandler` bắt lỗi tập trung và `spring-boot-starter-validation` để validate DTOs, đảm bảo bad request bị chặn ngay tại controller.
+- **Phase 13:** Đã cấu hình `spring-boot-starter-cache` và `spring-boot-starter-data-redis` cho `Catalog Service`, giúp tăng tốc các truy vấn lấy danh sách sản phẩm.
+- **Phase 14:** Cấu hình **Spring Boot Actuator** kèm **Zipkin** và **Micrometer** để có thể giám sát health check và distributed tracing cho toàn bộ hệ thống.
+- **Phase 15:** Đã viết Unit Test cho logic của `OrderService` sử dụng Mockito và JUnit 5.
+- **Phase 16:** Hoàn thiện Pipeline CI/CD thông qua GitHub Actions và chuẩn hóa kịch bản chạy toàn diện (MySQL, Redis, Kafka, Zipkin) qua `docker-compose.yml`.
