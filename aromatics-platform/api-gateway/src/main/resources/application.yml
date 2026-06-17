@@ -32,6 +32,27 @@ spring:
           filters:
             - RewritePath=/api/order/(?<segment>.*), /$\{segment}
 
+        - id: cart-route
+          uri: lb://cart-service
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - RewritePath=/api/cart/(?<segment>.*), /$\{segment}
+
+        - id: promotion-route
+          uri: lb://promotion-service
+          predicates:
+            - Path=/api/promotion/**
+          filters:
+            - RewritePath=/api/promotion/(?<segment>.*), /$\{segment}
+
+        - id: payment-route
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payment/**
+          filters:
+            - RewritePath=/api/payment/(?<segment>.*), /$\{segment}
+
 eureka:
   client:
     service-url:
