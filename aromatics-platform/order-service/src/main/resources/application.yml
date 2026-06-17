@@ -43,3 +43,12 @@ feign:
         connectTimeout: 2000
         readTimeout: 2000
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0

@@ -37,3 +37,12 @@ jwt:
   # Thời hạn Access Token tính bằng mili-giây (15 phút = 900000)
   expiration: 900000
   refresh-expiration: 604800000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0
