@@ -1,0 +1,35 @@
+import os
+
+base_dir = "g:/ChuyenNganh/ChuyenNganh8/MSS301/Moc-Huong-Shop/aromatics-platform/notification-service/src/main/java/com/minhtriet/se3979/notificationservice"
+packages = ["service", "config"]
+
+for p in packages:
+    os.makedirs(os.path.join(base_dir, p), exist_ok=True)
+
+service_content = """package com.minhtriet.se3979.notificationservice.service;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class NotificationConsumerService {
+
+    @KafkaListener(topics = "order-events", groupId = "notification-group")
+    public void consumeOrderEvent(String message) {
+        log.info("Received order event: {}", message);
+        // send email
+    }
+
+    @KafkaListener(topics = "user-events", groupId = "notification-group")
+    public void consumeUserEvent(String message) {
+        log.info("Received user event: {}", message);
+        // send email
+    }
+}
+"""
+
+with open(os.path.join(base_dir, "service", "NotificationConsumerService.java"), "w") as f:
+    f.write(service_content)
+
+print("Notification Service generated.")
