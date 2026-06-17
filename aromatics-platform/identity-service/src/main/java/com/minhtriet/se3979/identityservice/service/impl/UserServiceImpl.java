@@ -34,4 +34,29 @@ public class UserServiceImpl implements UserService {
                 .createdAt(user.getCreatedAt())
                 .build();
     }
+
+    // Address
+    @Override
+    public java.util.List<com.minhtriet.se3979.identityservice.dto.response.AddressResponse> getUserAddresses(Long userId) {
+        return java.util.Collections.emptyList();
+    }
+    
+    @Override
+    public com.minhtriet.se3979.identityservice.dto.response.AddressResponse addUserAddress(Long userId, com.minhtriet.se3979.identityservice.dto.request.AddressRequest request) {
+        return com.minhtriet.se3979.identityservice.dto.response.AddressResponse.builder().id(1L).fullName(request.getFullName()).detailedAddress(request.getDetailedAddress()).build();
+    }
+    
+    // Wishlist
+    @Override
+    public java.util.List<com.minhtriet.se3979.identityservice.dto.response.WishlistResponse> getUserWishlist(Long userId) {
+        return java.util.Collections.emptyList();
+    }
+    
+    @Override
+    public com.minhtriet.se3979.identityservice.dto.response.WishlistResponse addProductToWishlist(Long userId, com.minhtriet.se3979.identityservice.dto.request.WishlistRequest request) {
+        return com.minhtriet.se3979.identityservice.dto.response.WishlistResponse.builder().id(1L).productId(request.getProductId()).build();
+    }
+    
+    @Override
+    public void removeProductFromWishlist(Long userId, Long productId) {}
 }
