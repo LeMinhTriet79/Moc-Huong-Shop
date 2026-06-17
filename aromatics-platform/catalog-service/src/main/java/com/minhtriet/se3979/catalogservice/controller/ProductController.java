@@ -5,6 +5,8 @@ import com.minhtriet.se3979.catalogservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.security.access.prepost.PreAuthorize;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,4 +37,15 @@ public class ProductController {
     public ResponseEntity<ProductResponse> create(@jakarta.validation.Valid @RequestBody ProductRequest request) {
         return ResponseEntity.ok(productService.createProduct(request));
     }
+
+    @QueryMapping
+    public ProductResponse productById(@Argument String id) {
+        return productService.getProduct(id);
+    }
+
+    @QueryMapping
+    public List<ProductResponse> allProducts() {
+        return productService.getAllProducts();
+    }
+
 }
