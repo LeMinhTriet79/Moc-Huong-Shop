@@ -77,3 +77,9 @@ Sau khi hoàn thành bộ khung xương Microservices chuẩn, hệ thống đã
 - **Phase 22 (Spring Cloud Config):** Khởi tạo `config-server` đóng vai trò quản lý cấu hình tập trung cho toàn bộ hệ thống Microservices. Các service con sẽ kéo cấu hình động khi khởi động.
 - **Phase 23 (Jasypt Secrets Management):** Ứng dụng thư viện Jasypt để mã hóa toàn bộ dữ liệu nhạy cảm (như mật khẩu DB) dưới dạng chuỗi `ENC(...)` trong các file cấu hình.
 - **Phase 24 (Elasticsearch):** Tích hợp Elasticsearch vào Catalog Service. Định nghĩa `ProductDocument` và `ProductSearchRepository` nhằm phục vụ tính năng tìm kiếm Full-Text với tốc độ cực nhanh và chính xác.
+
+## 7. Các Giai Đoạn Đưa Hệ Thống Lên Cloud-Native (Phase 25 - Phase 28)
+- **Phase 25 (GraphQL BFF):** Đã tích hợp `spring-boot-starter-graphql` làm điểm cuối gom dữ liệu thay thế REST. Frontend giờ đây chỉ cần gửi 1 truy vấn để lấy danh sách sản phẩm cùng thông tin mô tả chi tiết.
+- **Phase 26 (Prometheus & Grafana):** Cấu hình tự động khởi chạy cụm Monitoring thông qua `docker-compose`. `prometheus.yml` được cấu hình để "cạo" metrics từ Actuator của các microservices liên tục mỗi 15s.
+- **Phase 27 (Transactional Outbox):** Giải quyết triệt để lỗi mất dữ liệu giữa Database và Kafka bằng Outbox Pattern cho Order Service. Đơn hàng và sự kiện được lưu chung 1 transaction, sau đó có `@Scheduled` relay lên Kafka.
+- **Phase 28 (Kubernetes Ready):** Cung cấp sẵn bộ thư mục `k8s/` chứa `deployment.yaml` và `service.yaml` (dùng LoadBalancer cho Gateway), sẵn sàng bốc toàn bộ hệ thống quăng lên GKE (Google Kubernetes Engine) hoặc EKS (Amazon Elastic Kubernetes Service).
