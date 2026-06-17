@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/identity_db?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh
     username: root
-    password: rootpass
+    password: ENC(g6/fR0uV+R5qM5O2lT+w/w==)
 
   # Cấu hình JPA & Hibernate
   jpa:
