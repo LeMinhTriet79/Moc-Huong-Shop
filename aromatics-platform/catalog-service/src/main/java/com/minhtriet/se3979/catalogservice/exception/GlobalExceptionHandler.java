@@ -1,4 +1,4 @@
-package com.minhtriet.se3979.identityservice.exception;
+package com.minhtriet.se3979.catalogservice.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

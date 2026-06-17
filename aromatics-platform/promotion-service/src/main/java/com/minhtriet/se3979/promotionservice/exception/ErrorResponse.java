@@ -1,4 +1,4 @@
-package com.minhtriet.se3979.identityservice.exception;
+package com.minhtriet.se3979.promotionservice.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
